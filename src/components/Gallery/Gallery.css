@@ -1,0 +1,128 @@
+/* ============================================================
+   GalleryGrid.css
+   Implements a custom CSS Grid layout matching the reference image.
+   ============================================================ */
+
+.gallery-grid-wrapper {
+    background-color: #f5f1ed;
+    padding: 5rem 1.5rem;
+}
+
+/* 
+  Main Grid Container
+  - Desktop: 4 columns
+  - Height: 120vh fixed as requested
+  - Gap: 10px (small separation)
+*/
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    max-width: 100%;
+    margin: 0 auto;
+    height: 120vh;
+    /* Explicitly set as requested */
+}
+
+/* 
+  Grid Items (Images Containers)
+*/
+.gallery-grid__item {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 
+  Image Styling
+*/
+.gallery-grid__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.gallery-grid__item:hover img {
+    transform: scale(1.1);
+}
+
+/* 
+  === GRID LAYOUT RULES (DESKTOP) ===
+  Target Layout based on reference:
+  Row 1: [Large (50%)] [Small (25%)] [Small (25%)]
+  Row 2: [Small (25%)] [Small (25%)] [Large (50%)]
+*/
+
+/* Item 1: Top Left - Large (Spans 2 cols) */
+.gallery-grid__item:nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+/* Items 2 & 3: Top Right - Small Vertical */
+.gallery-grid__item:nth-child(2),
+.gallery-grid__item:nth-child(3) {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+/* Items 4 & 5: Bottom Left - Small Vertical */
+.gallery-grid__item:nth-child(4),
+.gallery-grid__item:nth-child(5) {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+/* Item 6: Bottom Right - Large (Spans 2 cols) */
+.gallery-grid__item:nth-child(6) {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+
+/* 
+  === TABLET BREAKPOINT (max-width: 1024px) ===
+  - Convert to 2 columns standard grid.
+  - Reset height to auto to avoid stretching.
+*/
+@media (max-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        grid-auto-rows: 350px;
+        height: auto;
+    }
+
+    /* Reset all spans */
+    .gallery-grid__item:nth-child(n) {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}
+
+/* 
+  === MOBILE BREAKPOINT (max-width: 640px) ===
+  - Convert to 1 column.
+*/
+@media (max-width: 640px) {
+    .gallery-grid-wrapper {
+        padding: 3rem 1rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 200px;
+        /* Reduced height to make images smaller */
+        height: auto;
+        gap: 6px;
+        /* Reduced gap */
+    }
+
+    /* Reduce border radius if applicable (though currently 0, adding explicit rule just in case) */
+    .gallery-grid__item {
+        border-radius: 2px;
+    }
+}

@@ -1,0 +1,12 @@
+.welcome-text {
+    font-family: 'Great Vibes', cursive;
+    font-weight: 400;
+    /* Script fonts usually don't need heavy bold */
+}
+
+/* Icon Box Styling adapted for Hero Section */
+:root {
+    --icon-gold: #c79a5b;
+}
+
+/* Icon styles moved to index.css */

@@ -1,0 +1,226 @@
+/* ==============================
+   Members Section Wrapper
+============================== */
+.members-grid-wrapper {
+    background-color: #fff;
+    padding: 5rem 1.5rem;
+}
+
+/* ==============================
+   Grid Layout
+============================== */
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ==============================
+   Card Item
+============================== */
+.members-grid__item {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ==============================
+   Image Styling
+============================== */
+.members-grid__item img {
+    width: 100%;
+    height: 400px;
+    /* Fixed height for equal cards */
+    object-fit: cover;
+    display: block;
+    transition: transform 1s ease;
+}
+
+/* Image Zoom Effect */
+.members-grid__item:hover img {
+    transform: scale(1.1);
+}
+
+/* ==============================
+   Gold Background Strip
+============================== */
+.members-strip-container {
+    position: relative;
+    width: 100%;
+}
+
+.members-strip {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 180px;
+    background-color: #c79a5b;
+    z-index: 0;
+}
+
+.members-grid.z-index-10 {
+    position: relative;
+    z-index: 10;
+}
+
+/* ==============================
+   Overlay (Card Style)
+============================== */
+.member-info-overlay {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    background: rgba(255, 255, 255, 0.325);
+    /* Proper white glass */
+    backdrop-filter: blur(3px);
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: all 0.4s ease;
+    z-index: 20;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover State */
+.members-grid__item:hover .member-info-overlay {
+    background: #ffffff;
+    transform: translateX(-50%) scale(1.02);
+    /* Keep centering + slight scale */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* ==============================
+   Typography
+============================== */
+.member-role {
+    font-family: 'Playfair Display', serif;
+    color: #c79a5b;
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.member-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+}
+
+/* ==============================
+   Social Icons
+============================== */
+.member-socials {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* ==============================
+   Social Icons (Cross/Frame Style)
+   Replicating Navbar logic but with specific colors
+============================== */
+.member-socials {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    /* Slight gap */
+}
+
+/* Wrapper for the cross lines */
+.member-social-wrapper {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    --line-color: #333;
+    --hover-color: #c79a5b;
+    --line-thickness: 2px;
+    --overlap: 5px;
+}
+
+/* Vertical extending lines */
+.member-social-wrapper::before {
+    content: "";
+    position: absolute;
+    top: calc(var(--overlap) * -1);
+    bottom: calc(var(--overlap) * -1);
+    left: 0;
+    right: 0;
+    border-left: var(--line-thickness) solid var(--line-color);
+    border-right: var(--line-thickness) solid var(--line-color);
+    pointer-events: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Horizontal extending lines */
+.member-social-wrapper::after {
+    content: "";
+    position: absolute;
+    left: calc(var(--overlap) * -1);
+    right: calc(var(--overlap) * -1);
+    top: 0;
+    bottom: 0;
+    border-top: var(--line-thickness) solid var(--line-color);
+    border-bottom: var(--line-thickness) solid var(--line-color);
+    pointer-events: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Specify Hover Colors for lines */
+.member-social-wrapper:hover::before,
+.member-social-wrapper:hover::after {
+    border-color: var(--hover-color);
+    --line-color: var(--hover-color);
+}
+
+/* The actual link box inside */
+.member-social-box {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: var(--line-thickness) solid var(--line-color);
+    color: #333;
+    font-size: 16px;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect on the box */
+.member-social-wrapper:hover .member-social-box {
+    background-color: var(--hover-color);
+    border-color: var(--hover-color);
+    color: white;
+}
+
+/* ==============================
+   Responsive
+============================== */
+@media (max-width: 1024px) {
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 640px) {
+    .members-grid {
+        grid-template-columns: 1fr;
+    }
+}

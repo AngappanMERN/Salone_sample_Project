@@ -1,0 +1,49 @@
+:root {
+    --btn-gold: #c29355;
+    /* The tan/gold color from your image */
+    --btn-border: #c29355;
+    /* The dark brown border color */
+}
+
+/* Font Utilities */
+.script-font {
+    font-family: 'Great Vibes', cursive;
+    font-weight: 400;
+}
+
+.custom-button {
+    background-color: var(--btn-gold);
+    /* Gold background */
+    color: #2d2b2b;
+    /* Black text */
+    border: 2px solid var(--btn-gold);
+    /* Gold border */
+    padding: 12px 28px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.custom-button:hover {
+    background-color: #222;
+    /* Black background */
+    color: white;
+    /* White text */
+    border-color: #222;
+    /* Black border to match bg */
+}
+
+/* Wrapper for the button if needed, matching Service/About but Price didn't seem to wrap it in .custom-button-wrapper in the JSX snippet, let's check JSX */
+/* The user's JSX for Price.jsx just has <button className="custom-button">... no wrapper div around it like in Service.jsx? 
+ Wait, looking at Price.jsx snippet (Step 355): 
+ <button className="custom-button">
+ So it doesn't use the wrapper with decorative lines. Just the button itself. 
+ But let's include the wrapper styles just in case they decide to use it or if 'custom-button' alone is fine. 
+ The button itself defines the border, so it should be fine.  */

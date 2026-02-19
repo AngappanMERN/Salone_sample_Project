@@ -1,0 +1,59 @@
+/* Blog Button Styling - Unique to Blog Component */
+
+/* Wrapper - Outer Crosshair Effect */
+.blog-btn-wrapper {
+    position: relative;
+    display: inline-block;
+    /* Padding is handled by JSX utils or can be added here if needed, keeping generic */
+}
+
+.blog-btn-wrapper::before,
+.blog-btn-wrapper::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+}
+
+.blog-btn-wrapper::before {
+    border-top: 2.5px solid #000;
+    border-bottom: 2.5px solid #000;
+    top: 5px;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+}
+
+.blog-btn-wrapper::after {
+    border-left: 2.5px solid #000;
+    border-right: 2.5px solid #000;
+    left: 5px;
+    right: 5px;
+    top: 0;
+    bottom: 0;
+}
+
+/* The Button Itself - Inner Border */
+.blog-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+    cursor: pointer;
+    background-color: transparent;
+    color: #000;
+    border: 2.5px solid #000;
+    /* Inner box border */
+    margin: 2px;
+    /* Space between outer lines and inner border */
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Ensure no hover effect changes colors */
+.blog-btn:hover {
+    background-color: transparent;
+    color: #000;
+    border-color: #000;
+    cursor: pointer;
+}

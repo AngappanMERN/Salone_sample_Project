@@ -1,0 +1,58 @@
+/* :root moved to global index.css */
+
+.footer-icon-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 6px;
+    /* Slightly less padding for smaller footer icons */
+    margin: 0 4px;
+    /* Space between icons */
+}
+
+/* Horizontal lines of the outer frame */
+.footer-icon-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -4px;
+    right: -4px;
+    border-top: 2.5px solid var(--btn-border);
+    border-bottom: 2.5px solid var(--btn-border);
+    pointer-events: none;
+}
+
+/* Vertical lines of the outer frame */
+.footer-icon-wrapper::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -4px;
+    bottom: -4px;
+    border-left: 2.5px solid var(--btn-border);
+    border-right: 2.5px solid var(--btn-border);
+    pointer-events: none;
+}
+
+/* Refine the inner button style if needed, but the main work is the wrapper */
+.footer-social-icon {
+    border: 2.5px solid var(--btn-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: black;
+    background-color: var(--btn-gold);
+    /* Added background color to make black icon visible */
+    transition: all 0.3s ease;
+}
+
+.footer-social-icon:hover {
+    background-color: #373030;
+    /* Dark background on hover */
+    color: var(--btn-gold);
+    /* Gold icon on hover */
+    border-color: #373030;
+}

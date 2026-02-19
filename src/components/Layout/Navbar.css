@@ -1,0 +1,79 @@
+:root {
+    --gold-primary: #c79a5b;
+    --line-thickness: 2.5px;
+    --overlap-size: 6px;
+    /* Extensions at corners */
+}
+
+/* .social-container styles removed to be handled by Tailwind */
+
+.social-cross-wrapper {
+    position: relative;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Vertical extending lines */
+.social-cross-wrapper::before {
+    content: "";
+    position: absolute;
+    top: calc(var(--overlap-size) * -1);
+    bottom: calc(var(--overlap-size) * -1);
+    left: 0;
+    right: 0;
+    border-left: var(--line-thickness) solid var(--gold-primary);
+    border-right: var(--line-thickness) solid var(--gold-primary);
+    pointer-events: none;
+}
+
+/* Horizontal extending lines */
+.social-cross-wrapper::after {
+    content: "";
+    position: absolute;
+    left: calc(var(--overlap-size) * -1);
+    right: calc(var(--overlap-size) * -1);
+    top: 0;
+    bottom: 0;
+    border-top: var(--line-thickness) solid var(--gold-primary);
+    border-bottom: var(--line-thickness) solid var(--gold-primary);
+    pointer-events: none;
+}
+
+.social-link-box {
+  width: 37px;
+  height: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: var(--line-thickness) solid var(--gold-primary);
+  color: black;
+  font-size: 18px;
+  position: relative;
+  z-index: 2;
+}
+
+.social-icon-text {
+    color: black;
+    font-family: 'Arial', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.social-icon-svg {
+    color: black;
+}
+
+/* Hover Effect: The box fills gold and text turns white */
+.social-link-box:hover {
+    background-color: var(--gold-primary);
+}
+
+.social-link-box:hover .social-icon-text,
+.social-link-box:hover .social-icon-svg {
+    color: white;
+}
