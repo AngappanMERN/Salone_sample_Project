@@ -12,7 +12,7 @@ export default function Navbar() {
     const [isMobilePagesOpen, setIsMobilePagesOpen] = useState(false);
 
     return (
-        <header className="relative lg:fixed lg:top-0 w-full flex items-center justify-between bg-[#e9e6e2] h-20 pr-8 z-50 shadow-md">
+        <header className="relative lg:fixed lg:top-0 w-full flex items-center justify-between bg-[#e9e6e2] h-20 pr-6 z-50 shadow-md">
             {/* Left Logo Section */}
             <div className="flex items-center gap-4 bg-[#c79a5b] h-20 px-4 lg:px-16">
                 <BsScissors className="text-2xl md:text-4xl text-black" />
@@ -96,8 +96,9 @@ export default function Navbar() {
 
             {/* Mobile Menu Button */}
             <button
-                className="lg:hidden text-2xl text-black z-50"
+                className="lg:hidden text-3xl text-black z-50 transition-transform duration-200 hover:scale-110 active:scale-90"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle Menu"
             >
                 {isMenuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
             </button>

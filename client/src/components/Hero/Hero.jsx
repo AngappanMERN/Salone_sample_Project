@@ -9,11 +9,11 @@ import "./Hero.css";
 
 function Hero() {
   return (
-    <section className="min-h-[calc(100vh-15px)] h-auto lg:h-[calc(100vh-15px)] bg-[#f5f1ed] flex items-center overflow-hidden">
+    <section className="min-h-[85vh] lg:min-h-screen h-auto lg:h-[calc(100vh-15px)] bg-[#f5f1ed] flex items-center overflow-hidden">
       <div className="grid lg:grid-cols-2 grid-cols-1 w-full h-full">
 
         {/* LEFT SIDE */}
-        <div className="relative flex flex-col justify-center items-start text-left px-6 lg:px-20 py-8 lg:py-0 space-y-6 lg:space-y-12 overflow-hidden">
+        <div className="relative flex flex-col justify-center items-start text-left px-6 lg:px-20 py-16 md:py-32 lg:py-0 space-y-6 lg:space-y-12 overflow-hidden">
           {/* Background Image (Light/Faint) */}
           <div className="absolute inset-0 z-0">
             <img
