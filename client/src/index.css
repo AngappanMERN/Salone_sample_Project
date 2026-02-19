@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+
+
+/* * {
+  box-sizing: border-box;
+} */
+
+
+:root {
+  --primary: #c79a5b;
+  --secondary: #191919;
+  --btn-gold: #c79a5b;
+  --btn-border: #c79a5b;
+  --font-serif: 'Playfair Display', serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  /* Offset for fixed navbar */
+}
+
+body {
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.script-font {
+  font-family: var(--font-script);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+/* Global Icon Box Styles */
+.hero-icon-wrapper {
+  position: relative;
+  display: inline-block;
+  padding: 8px;
+}
+
+.hero-icon-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  border-top: 3px solid var(--primary);
+  border-bottom: 3px solid var(--primary);
+  pointer-events: none;
+}
+
+.hero-icon-wrapper::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  top: 0;
+  bottom: 0;
+  border-left: 3px solid var(--primary);
+  border-right: 3px solid var(--primary);
+  pointer-events: none;
+}
+
+.hero-icon-box {
+  width: 56px;
+  height: 56px;
+  background-color: var(--primary);
+  color: black;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}

@@ -1,0 +1,66 @@
+/* :root moved to index.css */
+
+.about-script-text {
+    font-family: 'Great Vibes', cursive;
+    font-weight: 400;
+}
+
+.custom-button-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 8px;
+    /* Space for the lines to extend */
+}
+
+/* The horizontal lines of the outer frame */
+.custom-button-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    border-top: 2.5px solid var(--btn-border);
+    border-bottom: 2.5px solid var(--btn-border);
+    pointer-events: none;
+}
+
+/* The vertical lines of the outer frame */
+.custom-button-wrapper::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    top: 0;
+    bottom: 0;
+    border-left: 2.5px solid var(--btn-border);
+    border-right: 2.5px solid var(--btn-border);
+    pointer-events: none;
+}
+
+.custom-button {
+    background-color: var(--btn-gold);
+    color: #2d2b2b;
+    border: 2.5px solid var(--btn-gold);
+    /* The inner white gap effect */
+    padding: 10px 25px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.custom-button:hover {
+    background-color: #222;
+    color: white;
+    border-color: #222;
+}
+
+/* Font utilities moved to index.css */
