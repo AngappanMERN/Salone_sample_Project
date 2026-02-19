@@ -98,9 +98,8 @@ client/
 - **Body Font**: UI Standard (Segoe UI, Verdana)
 
 ## Technical Implementation Details
-- **Fixed Header Offset**: `App.jsx` includes a persistent spacer `<div className="h-20"></div>` to prevent content overlapping with the fixed navbar.
-- **Icon Styling**: Contact boxes feature mirrored icons (e.g., `scaleX(-1)` for phone icons) for visual symmetry in the design.
-- **Theming**: All design tokens are centralized in `src/index.css` under the `:root` selector for easy global updates.
+- **Responsive Navbar Positioning**: The navbar uses `relative` positioning on mobile to scroll with content, and `fixed` positioning on desktop (`lg:fixed`) for accessibility.
+- **Header Offset**: `App.jsx` includes a spacer `<div className="hidden lg:block h-20"></div>` that only adds height on desktop to offset the fixed navbar, preventing visual gaps on mobile.
 
 ---
 *Created as part of the AngappanMERN/Salone_sample_Project.*

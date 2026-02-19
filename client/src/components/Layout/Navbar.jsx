@@ -12,7 +12,7 @@ export default function Navbar() {
     const [isMobilePagesOpen, setIsMobilePagesOpen] = useState(false);
 
     return (
-        <header className="fixed top-0 w-full flex items-center justify-between bg-[#e9e6e2] h-20 pr-8 z-50 shadow-md">
+        <header className="relative lg:fixed lg:top-0 w-full flex items-center justify-between bg-[#e9e6e2] h-20 pr-8 z-50 shadow-md">
             {/* Left Logo Section */}
             <div className="flex items-center gap-4 bg-[#c79a5b] h-20 px-4 lg:px-16">
                 <BsScissors className="text-2xl md:text-4xl text-black" />
@@ -102,18 +102,18 @@ export default function Navbar() {
                 {isMenuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
             </button>
 
-            {/* Mobile Menu Overlay (Dropdown Style) */}
-            <div className={`absolute top-full left-0 w-full bg-[#e9e6e2] z-40 flex flex-col items-center gap-6 py-8 shadow-xl transition-all duration-300 ease-in-out origin-top lg:hidden ${isMenuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0 h-0 pointer-events-none'}`}>
-                <Link to="/#home" className="text-xl font-medium text-black hover:text-[#c79a5b]" onClick={() => setIsMenuOpen(false)}>HOME</Link>
-                <Link to="/#about" className="text-xl font-medium text-black hover:text-[#c79a5b]" onClick={() => setIsMenuOpen(false)}>ABOUT</Link>
-                <Link to="/#service" className="text-xl font-medium text-black hover:text-[#c79a5b]" onClick={() => setIsMenuOpen(false)}>SERVICE</Link>
-                <Link to="/#price" className="text-xl font-medium text-black hover:text-[#c79a5b]" onClick={() => setIsMenuOpen(false)}>PRICE</Link>
+            {/* Mobile Menu Overlay (Refined Style) */}
+            <div className={`absolute top-full right-0 w-[70%] max-w-[300px] bg-[#e9e6e2] z-40 flex flex-col items-center gap-4 py-8 shadow-2xl transition-all duration-300 ease-in-out origin-top-right lg:hidden ${isMenuOpen ? 'scale-100 opacity-100' : 'scale-0 opacity-0 h-0 pointer-events-none'}`}>
+                <Link to="/#home" className="text-lg font-medium text-black hover:text-[#c79a5b]" onClick={() => setIsMenuOpen(false)}>HOME</Link>
+                <Link to="/#about" className="text-lg font-medium text-black hover:text-[#c79a5b]" onClick={() => setIsMenuOpen(false)}>ABOUT</Link>
+                <Link to="/#service" className="text-lg font-medium text-black hover:text-[#c79a5b]" onClick={() => setIsMenuOpen(false)}>SERVICE</Link>
+                <Link to="/#price" className="text-lg font-medium text-black hover:text-[#c79a5b]" onClick={() => setIsMenuOpen(false)}>PRICE</Link>
 
                 {/* Mobile Pages Links (Dropdown Style) */}
                 <div className="w-full flex flex-col items-center">
                     <button
                         onClick={() => setIsMobilePagesOpen(!isMobilePagesOpen)}
-                        className="text-xl font-medium text-black hover:text-[#c79a5b] flex items-center gap-2"
+                        className="text-lg font-medium text-black hover:text-[#c79a5b] flex items-center gap-2"
                     >
                         PAGES
                         <span className={`transform transition-transform text-sm ${isMobilePagesOpen ? 'rotate-180' : ''}`}>▼</span>
@@ -126,30 +126,28 @@ export default function Navbar() {
                     </div>
                 </div>
 
-                <Link to="/#contact" className="text-xl font-medium text-black hover:text-[#c79a5b]" onClick={() => setIsMenuOpen(false)}>CONTACT</Link>
+                <Link to="/#contact" className="text-lg font-medium text-black hover:text-[#c79a5b]" onClick={() => setIsMenuOpen(false)}>CONTACT</Link>
 
 
 
-                {/* icon buttons - Mobile with Layout Styles */}
-                <div className="flex gap-6 p-4 bg-[#f8f7f4] rounded-lg mt-2">
+                {/* Social Icons - Mobile Single Line */}
+                <div className="flex justify-center items-center gap-4 mt-4 px-4 w-full">
                     {/* Facebook */}
-                    <div className="hero-icon-wrapper scale-75">
-                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="hero-icon-box w-[45px] h-[45px]">
-                            <FaFacebookF size={14} />
+                    <div className="hero-icon-wrapper scale-60">
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="hero-icon-box w-[40px] h-[40px]">
+                            <FaFacebookF size={12} />
                         </a>
                     </div>
-
                     {/* Instagram */}
-                    <div className="hero-icon-wrapper scale-75">
-                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="hero-icon-box w-[45px] h-[45px]">
-                            <FaInstagram size={14} />
+                    <div className="hero-icon-wrapper scale-60">
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="hero-icon-box w-[40px] h-[40px]">
+                            <FaInstagram size={12} />
                         </a>
                     </div>
-
                     {/* LinkedIn */}
-                    <div className="hero-icon-wrapper scale-75">
-                        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" className="hero-icon-box w-[45px] h-[45px]">
-                            <FaLinkedinIn size={14} />
+                    <div className="hero-icon-wrapper scale-60">
+                        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" className="hero-icon-box w-[40px] h-[40px]">
+                            <FaLinkedinIn size={12} />
                         </a>
                     </div>
                 </div>
