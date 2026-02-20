@@ -52,7 +52,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section className="p-4 bg-white font-serif">
+    <section className="py-20 px-6 bg-white font-serif">
       <div className="max-w-6xl mx-auto text-center mb-16">
         <h4 className="text-[#C5A059] text-5xl mb-4 script-font">
           {subtitle}
