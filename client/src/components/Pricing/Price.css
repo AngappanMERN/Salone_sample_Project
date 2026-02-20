@@ -32,11 +32,11 @@
 }
 
 .custom-button:hover {
-    background-color: #222;
+    background-color: #322c2c;
     /* Black background */
     color: white;
     /* White text */
-    border-color: #222;
+    border-color: #322c2c;
     /* Black border to match bg */
 }
 
