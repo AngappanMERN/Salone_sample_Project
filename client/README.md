@@ -48,6 +48,8 @@ client/
 - **Hero Infinite Scroll**: A perfectly seamless right-to-left automatic looping image slider with square bottom-right navigation buttons.
 - **Testimonial Slider**: Click-driven smooth physical card sliding, with dynamic center-card highlighting (gold background + scaling).
 - **Responsive Layout Adjustments**: Fully centralized alignment on mobile for complex sections (e.g., Footer), elegantly expanding left-aligned on desktop monitors.
+- **Refined Interactive States**: Custom "READ MORE" buttons feature a unified `#322c2c` light black background hover effect, complementing the gold outline.
+- **Pixel-Perfect Styling**: Section spacings, like the `80px` vertical and `24px` horizontal paddings on the Services block, have been fine-tuned to match original mockups.
 
 ### 🛠️ Key Sections
 - **Hero Carousel**: Auto-sliding visual gallery with left-aligned branding.
