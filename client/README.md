@@ -1,5 +1,7 @@
 # Sk Salone - Beauty Salon Website
 
+**Version: 1.0.0**
+
 ## Project Overview
 A modern, responsive beauty salon website built with **React 19**, **Vite**, and **Tailwind CSS v4**. The design focuses on a premium, elegant aesthetic with gold accents and script typography, tailored for a high-end beauty fashion experience.
 
@@ -41,6 +43,11 @@ client/
 - **Fixed Navbar**: Sticky positioning with a subtle shadow for constant accessibility.
 - **Smooth Anchor Scrolling**: Custom `ScrollToAnchor` component in `App.jsx` handles seamless transitions between sections using URL hashes (`/#about`).
 - **Responsive Layout**: Dynamic mobile menu with overlay.
+
+### 🎭 Animations & Interactions
+- **Hero Infinite Scroll**: A perfectly seamless right-to-left automatic looping image slider with square bottom-right navigation buttons.
+- **Testimonial Slider**: Click-driven smooth physical card sliding, with dynamic center-card highlighting (gold background + scaling).
+- **Responsive Layout Adjustments**: Fully centralized alignment on mobile for complex sections (e.g., Footer), elegantly expanding left-aligned on desktop monitors.
 
 ### 🛠️ Key Sections
 - **Hero Carousel**: Auto-sliding visual gallery with left-aligned branding.

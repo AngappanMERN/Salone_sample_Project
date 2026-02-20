@@ -58,9 +58,9 @@
 }
 
 .custom-button:hover {
-    background-color: #222;
+    background-color: #444444;
     color: white;
-    border-color: #222;
+    border-color: #444444;
 }
 
 /* Font utilities moved to index.css */

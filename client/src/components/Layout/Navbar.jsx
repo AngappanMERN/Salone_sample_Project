@@ -23,7 +23,7 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Menu */}
-            <nav className="hidden lg:flex gap-8 text-sm font-medium tracking-wide text-bold">
+            <nav className="hidden lg:flex gap-8 text-xl font-medium tracking-wide text-bold">
                 <Link to="/#home" className="text-black hover:text-[#c79a5b] transition duration-300 active:text-[#c79a5b]">HOME</Link>
                 <Link to="/#about" className="text-black hover:text-[#c79a5b] transition duration-300">ABOUT</Link>
                 <Link to="/#service" className="text-black hover:text-[#c79a5b] transition duration-300">SERVICE</Link>
