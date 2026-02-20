@@ -12,9 +12,9 @@ export default function Navbar() {
     const [isMobilePagesOpen, setIsMobilePagesOpen] = useState(false);
 
     return (
-        <header className="relative lg:fixed lg:top-0 w-full flex items-center justify-between bg-[#e9e6e2] h-20 pr-6 z-50 shadow-md">
+        <header className="relative lg:fixed lg:top-0 w-full flex items-center justify-between bg-[#e9e6e2] h-24 pr-6 z-50 shadow-md">
             {/* Left Logo Section */}
-            <div className="flex items-center gap-4 bg-[#c79a5b] h-20 px-4 lg:px-16">
+            <div className="flex items-center gap-4 bg-[#c79a5b] h-24 px-4 lg:px-16">
                 <BsScissors className="text-2xl md:text-4xl text-black" />
 
                 <h1 className="text-2xl md:text-4xl font-serif font-semibold tracking-wide text-black">

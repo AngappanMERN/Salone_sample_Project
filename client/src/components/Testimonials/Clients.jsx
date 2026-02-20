@@ -38,42 +38,45 @@ const testimonials = [
 ];
 
 export default function Clients() {
-    const [activeIndex, setActiveIndex] = useState(1);
+    // Clone testimonials to allow infinite scrolling effect
+    const clonedTestimonials = [...testimonials, ...testimonials, ...testimonials];
+
+    // Start at exactly the first element of the middle cloned block
+    const [active, setActive] = useState(testimonials.length);
+    const [isTransitioning, setIsTransitioning] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+
     const subtitle = "Testimonials";
     const title = "What Our Clients Say";
 
-    // Auto-slide specifically for mobile
     useEffect(() => {
-        const interval = setInterval(() => {
-            if (window.innerWidth < 768) {
-                setActiveIndex((prev) => (prev + 1) % testimonials.length);
-            }
-        }, 3000);
-
-        return () => clearInterval(interval);
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        handleResize(); // set initial state
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     const nextSlide = () => {
-        setActiveIndex((prev) => (prev + 1) % testimonials.length);
+        if (isTransitioning) return;
+        setIsTransitioning(true);
+        setActive((prev) => prev + 1);
     };
 
     const prevSlide = () => {
-        setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+        if (isTransitioning) return;
+        setIsTransitioning(true);
+        setActive((prev) => prev - 1);
     };
 
-    const getVisibleTestimonials = () => {
-        const len = testimonials.length;
-        const prevIndex = (activeIndex - 1 + len) % len;
-        const nextIndex = (activeIndex + 1) % len;
-
-        return [
-            { data: testimonials[prevIndex], isCenter: false },
-            { data: testimonials[activeIndex], isCenter: true },
-            { data: testimonials[nextIndex], isCenter: false },
-        ];
+    const handleTransitionEnd = () => {
+        setIsTransitioning(false);
+        // Reset position silently when reaching the clones to maintain infinite loop
+        if (active <= testimonials.length - 1) {
+            setActive(active + testimonials.length);
+        } else if (active >= testimonials.length * 2) {
+            setActive(active - testimonials.length);
+        }
     };
-
-    const visibleItems = getVisibleTestimonials();
 
     return (
         <div className="clients-wrapper bg-[#f8f7f4] py-20">
@@ -87,61 +90,81 @@ export default function Clients() {
             </div>
 
             <div className="max-w-6xl mx-auto px-4 relative">
-                {/* Navigation Buttons */}
-                <button
-                    onClick={prevSlide}
-                    className="absolute left-0 md:-left-12 top-1/2 -translate-y-1/2 p-3 text-[#C5A059] hover:text-[#b08e4f] bg-white shadow-md rounded-full z-20 transition-all transform hover:scale-110"
-                    aria-label="Previous testimonial"
-                >
-                    <FaChevronLeft className="text-xl" />
-                </button>
-                <button
-                    onClick={nextSlide}
-                    className="absolute right-0 md:-right-12 top-1/2 -translate-y-1/2 p-3 text-[#C5A059] hover:text-[#b08e4f] bg-white shadow-md rounded-full z-20 transition-all transform hover:scale-110"
-                    aria-label="Next testimonial"
-                >
-                    <FaChevronRight className="text-xl" />
-                </button>
+                {/* Carousel Track */}
+                <div className="w-full overflow-hidden py-10">
+                    <div
+                        className={`flex items-center ${isTransitioning ? 'transition-transform duration-500 ease-in-out' : ''}`}
+                        style={{
+                            transform: `translateX(calc(-${(active - (isMobile ? 0 : 1)) * (isMobile ? 100 : 33.333333)}%))`
+                        }}
+                        onTransitionEnd={handleTransitionEnd}
+                    >
+                        {clonedTestimonials.map((item, index) => {
+                            const isCenter = index === active;
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-                    {visibleItems.map((item, index) => (
-                        <div
-                            key={item.data.id}
-                            className={`relative p-8 h-[400px] shadow-lg text-center transition-all duration-300 transform overflow-hidden 
-                                ${!item.isCenter ? "hidden md:block" : "block"} 
-                                ${item.isCenter
-                                    ? "bg-[#C5A059] text-white scale-105 z-10"
-                                    : "bg-white text-gray-600 hover:-translate-y-2"
-                                }`}
-                        >
-                            {/* Background Watermark */}
-                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-11">
-                                <FaQuoteLeft className={`text-[300px] ${item.isCenter ? "text-white" : "text-gray-900"}`} />
-                            </div>
+                            return (
+                                <div
+                                    key={index}
+                                    className="w-full md:w-1/3 flex-shrink-0 px-4"
+                                >
+                                    <div
+                                        className={`relative p-8 h-[400px] shadow-lg text-center transition-all duration-500 transform overflow-hidden 
+                                            ${isCenter
+                                                ? "bg-[#c29555] text-white scale-105 z-10"
+                                                : "bg-[#f5f5f5] text-gray-600 hover:-translate-y-2 scale-95 opacity-80"
+                                            }`}
+                                    >
+                                        {/* Background Watermark */}
+                                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
+                                            <FaQuoteLeft className={`text-[250px] ${isCenter ? "text-black" : "text-gray-400"}`} />
+                                        </div>
 
-                            {/* Content */}
-                            <div className="relative z-10">
-                                <div className="mb-6 flex justify-center">
-                                    <FaQuoteLeft className={`text-4xl ${item.isCenter ? "text-[#333]" : "text-[#555]"}`} />
+                                        {/* Content */}
+                                        <div className="relative z-10 flex flex-col items-center justify-between h-full py-4">
+                                            <div className="mb-4">
+                                                <FaQuoteLeft className={`text-4xl mx-auto ${isCenter ? "text-[#2d2b2b]" : "text-[#2d2b2b]"}`} />
+                                            </div>
+
+                                            <p className={`mb-6 leading-relaxed flex-grow text-[15px] ${isCenter ? "text-[#1a1a1a]" : "text-gray-600"}`}>
+                                                {item.feedback}
+                                            </p>
+
+                                            <div className={`w-20 h-20 mx-auto mb-4 p-1 border ${isCenter ? "border-white" : "border-white"}`}>
+                                                <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                                            </div>
+
+                                            <div>
+                                                <h3 className={`text-xl font-serif mb-1 ${isCenter ? "text-[#1a1a1a]" : "text-[#1a1a1a]"}`}>
+                                                    {item.name}
+                                                </h3>
+                                                <span className={`text-sm tracking-widest uppercase ${isCenter ? "text-[#1a1a1a]" : "text-gray-500"}`}>
+                                                    {item.role}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                            );
+                        })}
+                    </div>
+                </div>
 
-                                <p className={`italic mb-6 leading-relaxed ${item.isCenter ? "text-white" : "text-gray-600"}`}>
-                                    "{item.data.feedback}"
-                                </p>
-
-                                <div className={`w-24 h-24 mx-auto mb-6 p-1 border ${item.isCenter ? "border-white" : "border-[#C5A059]"}`}>
-                                    <img src={item.data.image} alt={item.data.name} className="w-full h-full object-cover" />
-                                </div>
-
-                                <h3 className={`text-xl font-serif font-bold ${item.isCenter ? "text-[#333]" : "text-[#333]"}`}>
-                                    {item.data.name}
-                                </h3>
-                                <span className={`text-sm font-medium ${item.isCenter ? "text-[#333]" : "text-[#C5A059]"}`}>
-                                    {item.data.role}
-                                </span>
-                            </div>
-                        </div>
-                    ))}
+                {/* Bottom Navigation Buttons */}
+                <div className="flex justify-center gap-4 mt-6">
+                    <button
+                        onClick={prevSlide}
+                        className="bg-[#c29555] text-[#1a1a1a] w-12 h-12 flex items-center justify-center hover:bg-[#b0854c] transition-colors"
+                        aria-label="Previous testimonial"
+                    >
+                        <FaChevronLeft className="text-lg" />
+                    </button>
+                    <button
+                        onClick={nextSlide}
+                        className="bg-[#c29555] text-[#1a1a1a] w-12 h-12 flex items-center justify-center hover:bg-[#b0854c] transition-colors"
+                        aria-label="Next testimonial"
+                    >
+                        <FaChevronRight className="text-lg" />
+                    </button>
                 </div>
             </div>
         </div>

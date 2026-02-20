@@ -15,10 +15,8 @@
   position: relative;
   display: inline-block;
   padding: 8px;
-  /* Space for the lines to extend */
 }
 
-/* The horizontal lines of the outer frame */
 .custom-button-wrapper::before {
   content: "";
   position: absolute;

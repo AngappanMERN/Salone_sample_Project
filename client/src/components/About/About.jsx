@@ -25,21 +25,19 @@ function About() {
 
 
           {/* Contact Box */}
-          <div className="w-full bg-[#e9e6e2] flex items-center gap-6 px-8 py-6">
+          <div className="w-full bg-[#e9e6e2] flex items-stretch">
 
             {/* Icon */}
-            <div className="hero-icon-wrapper shrink-0">
-              <div className="hero-icon-box">
-                <FaPhoneAlt className="text-xl" style={{ transform: 'scaleX(-1)' }} />
-              </div>
+            <div className="bg-[#c79a5b] w-[80px] lg:w-[110px] flex items-center justify-center shrink-0">
+              <FaPhoneAlt className="text-3xl lg:text-4xl text-[#2d2b2b]" style={{ transform: 'scaleX(-1)' }} />
             </div>
 
             {/* Text */}
-            <div>
-              <h3 className="text-xl lg:text-2xl font-serif text-black">
+            <div className="p-6 lg:px-8 lg:py-7 flex flex-col justify-center">
+              <h3 className="text-2xl lg:text-3xl font-serif text-[#1a1a1a]">
                 +91 9876543210
               </h3>
-              <p className="text-sm text-gray-600 mt-1">
+              <p className="text-sm lg:text-base text-gray-600 mt-1">
                 Call us direct 24/7 for get a free consultation
               </p>
             </div>

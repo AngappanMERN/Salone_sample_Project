@@ -98,39 +98,82 @@ function SliderController() {
     { src: heroImg4, alt: "Beauty Salon 4" },
   ];
 
-  const [active, setActive] = useState(0);
+  // Clone first and last images for seamless infinite loop
+  const displayImages = [images[images.length - 1], ...images, images[0]];
+  const [active, setActive] = useState(1); // Start at index 1 because index 0 is the clone of the last image
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
-    const id = setInterval(() => setActive((s) => (s + 1) % images.length), 4000);
+    // 3 seconds auto slide
+    const id = setInterval(() => {
+      nextSlide();
+    }, 3000);
     return () => clearInterval(id);
-  }, []);
+  }, [isTransitioning]); // Re-bind interval when state changes to avoid overriding ongoing transitions
+
+  const nextSlide = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setActive((s) => s + 1);
+  };
+
+  const prevSlide = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setActive((s) => s - 1);
+  };
+
+  const handleTransitionEnd = () => {
+    setIsTransitioning(false);
+    if (active === 0) {
+      // Reached the clone of the last image, instantly jump to the actual last image
+      setActive(images.length);
+    } else if (active === displayImages.length - 1) {
+      // Reached the clone of the first image, instantly jump to the actual first image
+      setActive(1);
+    }
+  };
 
   return (
-    <>
-      {images.map((img, idx) => (
-        <img
-          key={idx}
-          src={img.src}
-          alt={img.alt}
-          className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${idx === active ? "opacity-100" : "opacity-0"
-            }`}
-        />
-      ))}
-
-      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-3 z-20">
-        {images.map((img, idx) => (
-          <button
+    <div className="relative w-full h-full overflow-hidden">
+      {/* Images track for slide animation */}
+      <div
+        className={`w-full h-full flex ${isTransitioning ? 'transition-transform duration-700 ease-in-out' : ''}`}
+        style={{ transform: `translateX(-${active * 100}%)` }}
+        onTransitionEnd={handleTransitionEnd}
+      >
+        {displayImages.map((img, idx) => (
+          <img
             key={idx}
-            onClick={() => setActive(idx)}
-            className={`w-20 h-14 overflow-hidden rounded-md border-2 transition-transform duration-200 focus:outline-none ${idx === active ? "scale-105 border-[#c79a5b]" : "border-white/60"
-              }`}
-            aria-label={`Show slide ${idx + 1}`}
-          >
-            <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
-          </button>
+            src={img.src}
+            alt={img.alt}
+            className="w-full h-full object-cover flex-shrink-0"
+          />
         ))}
       </div>
-    </>
+
+      {/* Navigation Buttons (Bottom Right) */}
+      <div className="absolute bottom-0 right-0 flex gap-[3px] z-20">
+        <button
+          onClick={prevSlide}
+          className="bg-[#cb9e5e] text-[#1a1a1a] w-16 h-14 lg:w-[80px] lg:h-[65px] flex items-center justify-center hover:bg-[#b0854c] transition-colors"
+          aria-label="Previous slide"
+        >
+          <svg className="w-6 h-6 lg:w-8 lg:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+        </button>
+        <button
+          onClick={nextSlide}
+          className="bg-[#c29555] text-[#1a1a1a] w-16 h-14 lg:w-[80px] lg:h-[65px] flex items-center justify-center hover:bg-[#b0854c] transition-colors"
+          aria-label="Next slide"
+        >
+          <svg className="w-6 h-6 lg:w-8 lg:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
   );
 }
 
